@@ -181,7 +181,11 @@ function renderLines() {
 function renderCanvas() {
     const padding = parseInt(document.getElementById("padding").value) || 32;
     const bgColor = document.getElementById("bgColor").value;
-    const fontFamily = document.getElementById("fontSelect")?.value || "system-ui";
+    
+    // 🔥 [수정] HTML에서 선택된 폰트 값을 실시간으로 가져와 적용합니다.
+    const fontSelectEl = document.getElementById("fontSelect");
+    const fontFamily = fontSelectEl ? fontSelectEl.value : "system-ui";
+    
     const fontSize = parseInt(document.getElementById("fontSize")?.value) || 14;
     const lineHeight = (fontSize * 1.65).toFixed(1);
     const gap = parseInt(document.getElementById("lineGap")?.value) || 20;
@@ -190,6 +194,7 @@ function renderCanvas() {
     captureArea.style.padding = `${padding}px`;
 
     dialogueListEl.innerHTML = "";
+    // 🔥 [수정] 캔버스 전체 서체 스타일을 선택된 폰트로 변경합니다.
     dialogueListEl.style.fontFamily = fontFamily;
 
     lines.forEach((l) => {
