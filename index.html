@@ -44,34 +44,14 @@
                 <select id="fontSelect">
                     <option value="system-ui">시스템 기본 서체</option>
                     <option value="'Pretendard', sans-serif">Pretendard</option>
-                    <option value="Georgia, serif">serif (영문 추천)</option>
+                    <option value="'OnulSusa60', sans-serif">오늘수사 60</option>
+                    <option value="'OnulDamso', sans-serif">오늘담소</option>
+                    <option value="'OnulDanjo', sans-serif">오늘단조</option>
+                    <option value="'OnulSamhwagothic', sans-serif">오늘삼화고딕</option>
                 </select>
             </div>
             <div class="row">
-                <label>전체 가로폭 (px)</label>
-                <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
-                    <input type="range" id="cardWidth" min="320" max="800" value="440" style="flex: 1; accent-color: var(--accent);" />
-                    <span id="cardWidthVal" style="font-size: 13px; font-weight: 600; min-width: 36px; text-align: right;">440</span>
-                </div>
-            </div>
-            <div class="row">
-                <label>글자 크기 (px)</label>
-                <div class="stepper">
-                    <button onclick="stepVal('fontSize', -1)">-</button>
-                    <input type="number" id="fontSize" value="14" />
-                    <button onclick="stepVal('fontSize', 1)">+</button>
-                </div>
-            </div>
-            <div class="row">
-                <label>대화 간격 (px)</label>
-                <div class="stepper">
-                    <button onclick="stepVal('lineGap', -2)">-</button>
-                    <input type="number" id="lineGap" value="20" />
-                    <button onclick="stepVal('lineGap', 2)">+</button>
-                </div>
-            </div>
-            <div class="row">
-                <label>바깥 여백 (px)</label>
+                <label>여백 (px)</label>
                 <div class="stepper">
                     <button onclick="stepVal('padding', -4)">-</button>
                     <input type="number" id="padding" value="32" />
