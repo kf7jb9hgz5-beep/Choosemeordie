@@ -48,6 +48,13 @@
                 </select>
             </div>
             <div class="row">
+                <label>전체 가로폭 (px)</label>
+                <div style="flex: 1; display: flex; align-items: center; gap: 8px;">
+                    <input type="range" id="cardWidth" min="320" max="800" value="440" style="flex: 1; accent-color: var(--accent);" />
+                    <span id="cardWidthVal" style="font-size: 13px; font-weight: 600; min-width: 36px; text-align: right;">440</span>
+                </div>
+            </div>
+            <div class="row">
                 <label>글자 크기 (px)</label>
                 <div class="stepper">
                     <button onclick="stepVal('fontSize', -1)">-</button>
