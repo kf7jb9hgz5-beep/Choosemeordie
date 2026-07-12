@@ -184,8 +184,6 @@ function renderCanvas() {
     const bgColor = document.getElementById("bgColor").value;
     const fontSelectEl = document.getElementById("fontSelect");
     const fontFamily = fontSelectEl ? fontSelectEl.value : "system-ui";
-    
-    // 이 부분이 추가된 글씨 크기 로직입니다
     const fontSize = parseInt(document.getElementById("fontSize")?.value) || 14;
     const lineHeight = (fontSize * 1.65).toFixed(1);
     const gap = parseInt(document.getElementById("lineGap")?.value) || 20;
