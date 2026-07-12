@@ -71,7 +71,6 @@ document.getElementById("btnModalConfirm").addEventListener("click", () => {
     }
 });
 
-// HTML onclick에서 호출할 수 있도록 전역(window)에 등록
 window.editSpeaker = function(idx) {
     editingSpeakerIdx = idx;
     const s = speakers[idx];
@@ -187,9 +186,22 @@ function renderCanvas() {
     const fontSize = parseInt(document.getElementById("fontSize")?.value) || 14;
     const lineHeight = (fontSize * 1.65).toFixed(1);
     const gap = parseInt(document.getElementById("lineGap")?.value) || 20;
+    
+    // 가로폭 값 반영
+    const cardWidth = parseInt(document.getElementById("cardWidth").value) || 440;
+    const cardWidthVal = document.getElementById("cardWidthVal");
+    if (cardWidthVal) cardWidthVal.textContent = cardWidth;
 
     captureArea.style.background = bgColor;
     captureArea.style.padding = `${padding}px`;
+    captureArea.style.maxWidth = `${cardWidth}px`; // 가로폭 연동
+
+    // 글자 크기에 비례하는 프로필 크기 계산 (글자 크기의 약 3.14배)
+    const profileSize = Math.max(24, Math.round(fontSize * 3.14));
+    const profileGap = Math.max(8, Math.round(fontSize * 0.85)); // 사진과 글자 사이 간격도 비례 조절
+
+    captureArea.style.setProperty('--profile-size', `${profileSize}px`);
+    captureArea.style.setProperty('--profile-gap', `${profileGap}px`);
 
     dialogueListEl.innerHTML = "";
     dialogueListEl.style.fontFamily = fontFamily;
@@ -201,17 +213,19 @@ function renderCanvas() {
         const item = document.createElement("div");
         item.className = "dialogue-item";
         item.style.marginBottom = `${gap}px`;
+        item.style.gap = `var(--profile-gap)`; // 동적 간격 적용
 
         const circle = document.createElement("div");
         circle.className = "profile-circle";
         circle.style.background = s.color;
-        circle.style.width = "44px";
-        circle.style.height = "44px";
+        circle.style.width = `var(--profile-size)`;  // 동적 크기 적용
+        circle.style.height = `var(--profile-size)`; // 동적 크기 적용
+        
         if (s.image) {
             circle.innerHTML = `<img src="${s.image}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />`;
         } else {
             circle.textContent = getInitial(s.name);
-            circle.style.fontSize = "14px";
+            circle.style.fontSize = `${Math.max(10, Math.round(profileSize * 0.32))}px`; // 이니셜 폰트도 비례 조절
         }
 
         const content = document.createElement("div");
@@ -236,7 +250,6 @@ function renderCanvas() {
         dialogueListEl.appendChild(item);
     });
 
-    // 마지막 아이템 마진 제거
     const items = dialogueListEl.querySelectorAll(".dialogue-item");
     if (items.length > 0) items[items.length - 1].style.marginBottom = "0";
 }
@@ -246,7 +259,7 @@ function getInitial(name) {
 }
 
 // ── 설정 변경 이벤트 ──────────────────────────────────────
-["bgColor", "padding", "fontSelect", "fontSize", "lineGap"].forEach(id => {
+["bgColor", "padding", "fontSelect", "fontSize", "lineGap", "cardWidth"].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
         el.addEventListener("input", renderCanvas);
