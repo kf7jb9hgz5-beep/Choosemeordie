@@ -79,42 +79,7 @@
         <button class="btn-export secondary" id="btnCopy">복사</button>
         <button class="btn-export primary" id="btnSave">저장</button>
     </nav>
-
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <div class="modal-title" id="modalTitle">화자 추가</div>
-            <div class="modal-row">
-                <label>이름</label>
-                <input type="text" id="speakerName" placeholder="예: J" />
-            </div>
-            <div class="modal-row">
-                <label>프로필</label>
-                <div class="profile-options">
-                    <div class="option-row">
-                        <label class="radio-label"><input type="radio" name="profileType" value="initial" checked /> 이니셜 사용</label>
-                        <label class="radio-label"><input type="radio" name="profileType" value="image" /> 이미지 업로드</label>
-                    </div>
-                    <div id="colorPickerWrap" class="modal-row">
-                        <label>배경색</label>
-                        <input type="color" id="speakerColor" value="#94a3b8" />
-                    </div>
-                    <div id="imageUploadWrap" class="modal-row" style="display:none">
-                        <label>이미지</label>
-                        <input type="file" id="speakerImage" accept="image/*" />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-row">
-                <label>이름 색상</label>
-                <input type="color" id="speakerNameColor" value="#1e293b" />
-            </div>
-            <div class="modal-actions">
-                <button class="btn-cancel" id="btnModalCancel">취소</button>
-                <button class="btn-primary" id="btnModalConfirm">확인</button>
-            </div>
-        </div>
-    </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
