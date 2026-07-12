@@ -38,9 +38,10 @@ body {
     padding: 32px;
 }
 
-/* 대화 아이템 */
+/* 대화 아이템 (프로필과 내용이 평행하도록 정렬) */
 .dialogue-item {
     display: flex;
+    align-items: flex-start; /* 상단 라인을 맞춰 평행하게 배치 */
     gap: 12px;
     margin-bottom: 20px;
 }
@@ -69,12 +70,15 @@ body {
 
 .dialogue-content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 .speaker-name {
     font-size: 13px;
     font-weight: 700;
     margin-bottom: 4px;
-    line-height: 1;
+    line-height: 1.2;
 }
 .dialogue-text {
     font-size: 14px;
@@ -326,7 +330,7 @@ textarea {
     color: #fff;
 }
 
-/* 모달 오버레이 */
+/* 모달 */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -340,9 +344,8 @@ textarea {
     display: flex; 
 }
 
-/* 모달창 본체 (배경을 흰색으로 확실하게 지정하여 투명 비침 해결) */
 .modal {
-    background: #ffffff;
+    background: var(--card);
     border-radius: var(--radius) var(--radius) 0 0;
     padding: 24px 20px;
     padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
