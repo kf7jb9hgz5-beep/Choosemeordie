@@ -134,10 +134,9 @@ document.getElementById("btnAddLine").addEventListener("click", () => {
     renderCanvas();
 });
 
-// 🔥 [요구사항 반영] 삭제 시 목록(List)에서도 지워지도록 renderLines()를 다시 호출합니다.
 function deleteLine(idx) {
     lines.splice(idx, 1);
-    renderLines(); // 대화 목록 새로고침 추가
+    renderLines(); 
     renderCanvas();
 }
 
@@ -187,7 +186,9 @@ function renderCanvas() {
     const fontSelectEl = document.getElementById("fontSelect");
     const fontFamily = fontSelectEl ? fontSelectEl.value : "system-ui";
     
-    const fontSize = parseInt(document.getElementById("fontSize")?.value) || 14;
+    // 폰트 사이즈 가져오기 (id값 검증 포함)
+    const fontSizeEl = document.getElementById("fontSize");
+    const fontSize = fontSizeEl ? parseInt(fontSizeEl.value) : 14;
     const lineHeight = (fontSize * 1.65).toFixed(1);
     const gap = parseInt(document.getElementById("lineGap")?.value) || 20;
 
@@ -223,11 +224,13 @@ function renderCanvas() {
         const nameEl = document.createElement("div");
         nameEl.className = "speaker-name";
         nameEl.style.color = s.nameColor;
-        nameEl.style.fontSize = `${Math.max(11, fontSize - 2)}px`;
+        // 이름 크기도 전체 폰트 크기 설정에 맞춰 실시간 연동
+        nameEl.style.fontSize = `${Math.max(12, fontSize - 2)}px`; 
         nameEl.textContent = s.name;
 
         const textEl = document.createElement("div");
         textEl.className = "dialogue-text";
+        // 대사 크기 실시간 연동 고정
         textEl.style.fontSize = `${fontSize}px`;
         textEl.style.lineHeight = `${lineHeight}px`;
         textEl.textContent = l.text;
