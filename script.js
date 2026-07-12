@@ -134,7 +134,6 @@ document.getElementById("btnAddLine").addEventListener("click", () => {
     renderCanvas();
 });
 
-// [삭제 연동]
 function deleteLine(idx) {
     lines.splice(idx, 1);
     renderLines();
@@ -189,7 +188,6 @@ function renderCanvas() {
     const lineHeight = (fontSize * 1.65).toFixed(1);
     const gap = parseInt(document.getElementById("lineGap")?.value) || 20;
 
-    // [프로필 비례 조절]
     const profileSize = Math.round((fontSize / 14) * 44);
 
     captureArea.style.background = bgColor;
@@ -306,5 +304,4 @@ document.getElementById("btnCopy").addEventListener("click", () => {
     });
 });
 
-// ── 초기 렌더 ──────────────────────────────────────────
 renderCanvas();
