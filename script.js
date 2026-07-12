@@ -134,10 +134,10 @@ document.getElementById("btnAddLine").addEventListener("click", () => {
     renderCanvas();
 });
 
-// 🔥 [수정] 대화 데이터 삭제 후 대화 목록 UI(renderLines)를 다시 호출하여 목록에서도 즉시 삭제시킵니다.
+// 대화 데이터 삭제 후 대화 목록 UI(renderLines)를 다시 호출하여 목록에서도 즉시 삭제시킵니다.
 function deleteLine(idx) {
     lines.splice(idx, 1);
-    renderLines(); // 여기에 목록 새로고침 추가
+    renderLines();
     renderCanvas();
 }
 
@@ -184,13 +184,15 @@ function renderCanvas() {
     const padding = parseInt(document.getElementById("padding").value) || 32;
     const bgColor = document.getElementById("bgColor").value;
     
-    // 쳐긁어온 원본 로직 완벽 유지
     const fontSelectEl = document.getElementById("fontSelect");
     const fontFamily = fontSelectEl ? fontSelectEl.value : "system-ui";
     
     const fontSize = parseInt(document.getElementById("fontSize")?.value) || 14;
     const lineHeight = (fontSize * 1.65).toFixed(1);
     const gap = parseInt(document.getElementById("lineGap")?.value) || 20;
+
+    // 🔥 [수정] 글씨 크기에 따른 프로필 크기 자동 계산 (14px 기준 44px)
+    const profileSize = Math.round((fontSize / 14) * 44);
 
     captureArea.style.background = bgColor;
     captureArea.style.padding = `${padding}px`;
@@ -209,13 +211,14 @@ function renderCanvas() {
         const circle = document.createElement("div");
         circle.className = "profile-circle";
         circle.style.background = s.color;
-        circle.style.width = "44px";
-        circle.style.height = "44px";
+        circle.style.width = `${profileSize}px`;
+        circle.style.height = `${profileSize}px`;
+        circle.style.fontSize = `${Math.round(profileSize * 0.35)}px`;
+
         if (s.image) {
             circle.innerHTML = `<img src="${s.image}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />`;
         } else {
             circle.textContent = getInitial(s.name);
-            circle.style.fontSize = "14px";
         }
 
         const content = document.createElement("div");
