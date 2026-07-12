@@ -379,6 +379,7 @@ textarea:focus { border-color: var(--accent); }
 .radio-label input { accent-color: var(--accent); }
 
 .modal-actions { display: flex; gap: 8px; }
+
 .btn-cancel {
     flex: 1;
     height: 44px;
@@ -389,3 +390,4 @@ textarea:focus { border-color: var(--accent); }
     font-weight: 600;
     cursor: pointer;
 }
+
