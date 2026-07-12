@@ -326,12 +326,12 @@ textarea {
     color: #fff;
 }
 
-/* ── 모달창 영역 (투명화 버그 해결) ── */
+/* 모달 */
 .modal-overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0,0,0,0.4);
     z-index: 100;
     align-items: flex-end;
     justify-content: center;
@@ -341,7 +341,7 @@ textarea {
 }
 
 .modal {
-    background: #ffffff; /* 투명하게 뒷 배경이 비치지 않도록 흰색 지정 */
+    background: var(--card);
     border-radius: var(--radius) var(--radius) 0 0;
     padding: 24px 20px;
     padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
@@ -350,9 +350,7 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15); /* 모달이 위로 뜨는 느낌의 그림자 */
 }
-
 .modal-title {
     font-size: 15px;
     font-weight: 700;
