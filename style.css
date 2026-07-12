@@ -1,3 +1,28 @@
+@font-face {
+    font-family: "OnulSusa60";
+    src: url("fonts/OnulSusa60-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "OnulDamso";
+    src: url("fonts/OnulDamso-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "OnulDanjo";
+    src: url("fonts/OnulDanjo-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "OnulSamhwagothic";
+    src: url("fonts/OnulSamhwagothic-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-display: swap;
+}
+
 :root {
     --bg: #f1f5f9;
     --card: #ffffff;
