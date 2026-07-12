@@ -134,7 +134,7 @@ document.getElementById("btnAddLine").addEventListener("click", () => {
     renderCanvas();
 });
 
-// 대화 데이터 삭제 후 대화 목록 UI(renderLines)를 다시 호출하여 목록에서도 즉시 삭제시킵니다.
+// [삭제 연동]
 function deleteLine(idx) {
     lines.splice(idx, 1);
     renderLines();
@@ -183,15 +183,13 @@ function renderLines() {
 function renderCanvas() {
     const padding = parseInt(document.getElementById("padding").value) || 32;
     const bgColor = document.getElementById("bgColor").value;
-    
     const fontSelectEl = document.getElementById("fontSelect");
     const fontFamily = fontSelectEl ? fontSelectEl.value : "system-ui";
-    
     const fontSize = parseInt(document.getElementById("fontSize")?.value) || 14;
     const lineHeight = (fontSize * 1.65).toFixed(1);
     const gap = parseInt(document.getElementById("lineGap")?.value) || 20;
 
-    // 🔥 [수정] 글씨 크기에 따른 프로필 크기 자동 계산 (14px 기준 44px)
+    // [프로필 비례 조절]
     const profileSize = Math.round((fontSize / 14) * 44);
 
     captureArea.style.background = bgColor;
