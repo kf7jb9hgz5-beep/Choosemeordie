@@ -134,10 +134,10 @@ document.getElementById("btnAddLine").addEventListener("click", () => {
     renderCanvas();
 });
 
-// 🔥 [수정] 대화 데이터 삭제 후 하단 목록 UI(renderLines)도 즉시 다시 그리도록 조치했습니다.
+// 🔥 [수정] 대화 데이터 삭제 후 대화 목록 UI(renderLines)를 다시 호출하여 목록에서도 즉시 삭제시킵니다.
 function deleteLine(idx) {
     lines.splice(idx, 1);
-    renderLines();
+    renderLines(); // 여기에 목록 새로고침 추가
     renderCanvas();
 }
 
@@ -184,7 +184,7 @@ function renderCanvas() {
     const padding = parseInt(document.getElementById("padding").value) || 32;
     const bgColor = document.getElementById("bgColor").value;
     
-    // 🔥 [원본 원상태 복구] HTML 엘리먼트 값 가져오는 원래 로직 그대로 배치했습니다.
+    // 쳐긁어온 원본 로직 완벽 유지
     const fontSelectEl = document.getElementById("fontSelect");
     const fontFamily = fontSelectEl ? fontSelectEl.value : "system-ui";
     
@@ -240,7 +240,6 @@ function renderCanvas() {
         dialogueListEl.appendChild(item);
     });
 
-    // 마지막 아이템 마진 제거
     const items = dialogueListEl.querySelectorAll(".dialogue-item");
     if (items.length > 0) items[items.length - 1].style.marginBottom = "0";
 }
