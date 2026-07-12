@@ -23,13 +23,12 @@ body {
     padding-bottom: calc(var(--bottom-h) + env(safe-area-inset-bottom, 0px));
 }
 
-/* 미리보기 */
+/* 미리보기 영역 */
 .preview-wrap {
     background: var(--bg);
     padding: 16px;
     display: flex;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 #captureArea {
@@ -37,8 +36,8 @@ body {
     width: 100%;
     max-width: 440px;
     padding: 32px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    border-radius: 4px;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
 /* 대화 아이템 */
@@ -63,6 +62,7 @@ body {
     font-weight: 700;
     color: #ffffff;
     overflow: hidden;
+    background: #e2e8f0;
 }
 .profile-circle img {
     width: 100%;
@@ -82,12 +82,12 @@ body {
 .dialogue-text {
     font-size: 14px;
     line-height: 1.65;
-    color: #1e293b;
+    color: var(--text);
     white-space: pre-wrap;
     word-break: keep-all;
 }
 
-/* 패널 */
+/* 하단 패널 */
 .panel {
     max-width: 480px;
     margin: 0 auto;
@@ -105,7 +105,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
 .section-title {
@@ -133,4 +132,319 @@ body {
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 0 10px;
-    font-
+    font-size: 14px;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.row input[type="color"] {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 2px;
+    background: none;
+}
+
+textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 15px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+    color: var(--text);
+    background: #ffffff;
+    font-family: inherit;
+}
+
+.stepper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg);
+}
+.stepper button {
+    background: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+    cursor: pointer;
+    color: var(--muted);
+}
+.stepper button:active { 
+    background: var(--border); 
+}
+.stepper input {
+    width: 44px;
+    height: 32px;
+    border: none;
+    background: none;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    outline: none;
+}
+
+/* 버튼 */
+.btn-add {
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 9px;
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+.btn-add:active { 
+    background: var(--bg); 
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+}
+.btn-primary:active { 
+    opacity: 0.85; 
+}
+
+/* 목록 내부 스타일 */
+.speaker-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(241,245,249,0.8);
+}
+.speaker-item:last-child { 
+    border-bottom: none; 
+}
+.speaker-thumb {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffffff;
+    overflow: hidden;
+}
+.speaker-thumb img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+.speaker-info { 
+    flex: 1; 
+    font-size: 13px; 
+    font-weight: 600; 
+}
+.speaker-actions { 
+    display: flex; 
+    gap: 6px; 
+}
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+.btn-icon:active { 
+    background: var(--bg); 
+}
+.btn-icon.del { 
+    color: var(--danger); 
+}
+
+.line-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(241,245,249,0.8);
+    font-size: 13px;
+}
+.line-item:last-child { 
+    border-bottom: none; 
+}
+.line-speaker { 
+    font-weight: 700; 
+    flex-shrink: 0; 
+    min-width: 32px; 
+}
+.line-text { 
+    flex: 1; 
+    color: var(--muted); 
+    line-height: 1.5; 
+}
+.line-actions { 
+    display: flex; 
+    gap: 4px; 
+    flex-shrink: 0; 
+}
+
+/* 하단 바 고정 */
+.bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: var(--bottom-h);
+    padding: 10px 16px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    max-width: 480px;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+.btn-export {
+    flex: 1;
+    height: 44px;
+    border-radius: 22px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+}
+.btn-export.secondary {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+.btn-export.primary {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+/* ── 모달창 투명화 버그 완전 해결 부분 ── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* 뒷배경 흐리게 가림 */
+    z-index: 100;
+    align-items: flex-end;
+    justify-content: center;
+}
+.modal-overlay.open { 
+    display: flex; 
+}
+
+.modal {
+    background: #ffffff !important; /* 배경색을 흰색으로 강제 고정하여 투명화 방지 */
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 24px 20px;
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08); /* 그림자 추가로 모달 분리 */
+}
+
+.modal-title {
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text);
+}
+.modal-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.modal-row label {
+    font-size: 13px;
+    color: var(--muted);
+    flex-shrink: 0;
+    min-width: 52px;
+}
+.modal-row input[type="text"] {
+    flex: 1;
+    height: 38px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 15px;
+    outline: none;
+    background: var(--bg);
+    color: var(--text);
+}
+.modal-row input[type="color"] {
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 2px;
+    background: none;
+}
+.modal-row input[type="file"] {
+    flex: 1;
+    font-size: 13px;
+}
+
+.profile-options { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    flex: 1; 
+}
+.option-row { 
+    display: flex; 
+    gap: 16px; 
+}
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.radio-label input { 
+    accent-color: var(--accent); 
+}
+
+.modal-actions { 
+    display: flex; 
+    gap: 8px; 
+}
+.btn-cancel {
+    flex: 1;
+    height: 44px;
+    border-radius: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text);
+}
