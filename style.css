@@ -1,33 +1,3 @@
-
-@font-face {
-    font-family: 'OnulSusa60';
-    src: url('fonts/OnulSusa60-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'OnulDamso';
-    src: url('fonts/OnulDamso-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'OnulDanjo';
-    src: url('fonts/OnulDanjo-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'OnulSamhwagothic';
-    src: url('fonts/OnulSamhwagothic-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-:root {
-    --bg: #f1f5f9;
-...
-
 :root {
     --bg: #f1f5f9;
     --card: #ffffff;
@@ -312,6 +282,7 @@ textarea:focus { border-color: var(--accent); }
     box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
     max-width: 480px;
     margin: 0 auto;
+    z-index: 10; /* 하단 바가 가려지지 않게 설정 */
 }
 
 .btn-export {
@@ -409,7 +380,6 @@ textarea:focus { border-color: var(--accent); }
 .radio-label input { accent-color: var(--accent); }
 
 .modal-actions { display: flex; gap: 8px; }
-
 .btn-cancel {
     flex: 1;
     height: 44px;
@@ -420,4 +390,3 @@ textarea:focus { border-color: var(--accent); }
     font-weight: 600;
     cursor: pointer;
 }
-
