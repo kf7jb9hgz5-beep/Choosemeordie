@@ -51,11 +51,27 @@
                 </select>
             </div>
             <div class="row">
+                <label>글씨 크기</label>
+                <div class="stepper">
+                    <button onclick="stepVal('fontSize', -1)">-</button>
+                    <input type="number" id="fontSize" value="14" readonly>
+                    <button onclick="stepVal('fontSize', 1)">+</button>
+                </div>
+            </div>
+            <div class="row">
                 <label>여백 (px)</label>
                 <div class="stepper">
                     <button onclick="stepVal('padding', -4)">-</button>
                     <input type="number" id="padding" value="32" />
                     <button onclick="stepVal('padding', 4)">+</button>
+                </div>
+            </div>
+            <div class="row">
+                <label>문장 간격</label>
+                <div class="stepper">
+                    <button onclick="stepVal('lineGap', -2)">-</button>
+                    <input type="number" id="lineGap" value="20" />
+                    <button onclick="stepVal('lineGap', 2)">+</button>
                 </div>
             </div>
         </section>
