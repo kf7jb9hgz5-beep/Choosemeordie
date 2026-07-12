@@ -326,7 +326,7 @@ textarea {
     color: #fff;
 }
 
-/* 모달 */
+/* 모달 오버레이 */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -340,8 +340,9 @@ textarea {
     display: flex; 
 }
 
+/* 모달창 본체 (배경을 흰색으로 확실하게 지정하여 투명 비침 해결) */
 .modal {
-    background: var(--card);
+    background: #ffffff;
     border-radius: var(--radius) var(--radius) 0 0;
     padding: 24px 20px;
     padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
