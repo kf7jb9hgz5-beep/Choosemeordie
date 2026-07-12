@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>대화 카드 생성기</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="preview-wrap">
+        <div id="captureArea">
+            <div id="dialogueList"></div>
+        </div>
+    </div>
+
+    <main class="panel">
+
+        <section class="card" id="speakerSection">
+            <div class="section-title">화자 관리</div>
+            <div id="speakerList"></div>
+            <button class="btn-add" id="btnAddSpeaker">+ 화자 추가</button>
+        </section>
+
+        <section class="card">
+            <div class="section-title">대화 추가</div>
+            <div class="row">
+                <label>화자</label>
+                <select id="selSpeaker"></select>
+            </div>
+            <textarea id="dialogueInput" placeholder="대화 내용을 입력하세요..." rows="3"></textarea>
+            <button class="btn-primary" id="btnAddLine">+ 대화 추가</button>
+        </section>
+
+        <section class="card">
+            <div class="section-title">디자인 설정</div>
+            <div class="row">
+                <label>배경색</label>
+                <input type="color" id="bgColor" value="#ffffff" />
+            </div>
+            <div class="row">
+                <label>서체 선택</label>
+                <select id="fontSelect">
+                    <option value="system-ui">시스템 기본 서체</option>
+                    <option value="'Pretendard', sans-serif">Pretendard</option>
+                    <option value="'OnulSusa60', sans-serif">오늘수사 60</option>
+                    <option value="'OnulDamso', sans-serif">오늘담소</option>
+                    <option value="'OnulDanjo', sans-serif">오늘단조</option>
+                    <option value="'OnulSamhwagothic', sans-serif">오늘삼화고딕</option>
+                </select>
+            </div>
+            <div class="row">
+                <label>글씨 크기</label>
+                <div class="stepper">
+                    <button onclick="stepVal('fontSize', -1)">-</button>
+                    <input type="number" id="fontSize" value="14" readonly>
+                    <button onclick="stepVal('fontSize', 1)">+</button>
+                </div>
+            </div>
+            <div class="row">
+                <label>여백 (px)</label>
+                <div class="stepper">
+                    <button onclick="stepVal('padding', -4)">-</button>
+                    <input type="number" id="padding" value="32" />
+                    <button onclick="stepVal('padding', 4)">+</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="section-title">대화 목록</div>
+            <div id="lineList"></div>
+        </section>
+
+    </main>
+
+    <nav class="bottom-bar">
+        <button class="btn-export secondary" id="btnCopy">복사</button>
+        <button class="btn-export primary" id="btnSave">저장</button>
+    </nav>
+    
+
+    <!-- 화자 추가 모달 -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-title" id="modalTitle">화자 추가</div>
+            <div class="modal-row">
+                <label>이름</label>
+                <input type="text" id="speakerName" placeholder="예: J" />
+            </div>
+            <div class="modal-row">
+                <label>프로필</label>
+                <div class="profile-options">
+                    <div class="option-row">
+                        <label class="radio-label"><input type="radio" name="profileType" value="initial" checked /> 이니셜 사용</label>
+                        <label class="radio-label"><input type="radio" name="profileType" value="image" /> 이미지 업로드</label>
+                    </div>
+                    <div id="colorPickerWrap" class="modal-row">
+                        <label>배경색</label>
+                        <input type="color" id="speakerColor" value="#94a3b8" />
+                    </div>
+                    <div id="imageUploadWrap" class="modal-row" style="display:none">
+                        <label>이미지</label>
+                        <input type="file" id="speakerImage" accept="image/*" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-row">
+                <label>이름 색상</label>
+                <input type="color" id="speakerNameColor" value="#1e293b" />
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" id="btnModalCancel">취소</button>
+                <button class="btn-primary" id="btnModalConfirm">확인</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
