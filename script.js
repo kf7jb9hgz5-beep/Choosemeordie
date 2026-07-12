@@ -113,7 +113,6 @@ function renderSpeakers() {
     });
 }
 
-// ── 대화 추가 ──────────────────────────────────────────
 function renderSpeakerSelect() {
     selSpeaker.innerHTML = "";
     speakers.forEach((s, i) => {
@@ -124,6 +123,7 @@ function renderSpeakerSelect() {
     });
 }
 
+// ── 대화 추가 ──────────────────────────────────────────
 document.getElementById("btnAddLine").addEventListener("click", () => {
     const text = document.getElementById("dialogueInput").value.trim();
     if (!text) { alert("대화 내용을 입력해주세요."); return; }
@@ -134,10 +134,10 @@ document.getElementById("btnAddLine").addEventListener("click", () => {
     renderCanvas();
 });
 
-// 🔥 [여기만 수정] 삭제 시 데이터 배열에서 지우고, 목록 UI(renderLines)도 즉시 다시 그립니다.
+// 🔥 [수정] 대화 데이터 삭제 후 하단 목록 UI(renderLines)도 즉시 다시 그리도록 조치했습니다.
 function deleteLine(idx) {
     lines.splice(idx, 1);
-    renderLines(); 
+    renderLines();
     renderCanvas();
 }
 
@@ -184,7 +184,7 @@ function renderCanvas() {
     const padding = parseInt(document.getElementById("padding").value) || 32;
     const bgColor = document.getElementById("bgColor").value;
     
-    // 원래 올려주신 원본 로직 그대로 복구 완료
+    // 🔥 [원본 원상태 복구] HTML 엘리먼트 값 가져오는 원래 로직 그대로 배치했습니다.
     const fontSelectEl = document.getElementById("fontSelect");
     const fontFamily = fontSelectEl ? fontSelectEl.value : "system-ui";
     
@@ -240,6 +240,7 @@ function renderCanvas() {
         dialogueListEl.appendChild(item);
     });
 
+    // 마지막 아이템 마진 제거
     const items = dialogueListEl.querySelectorAll(".dialogue-item");
     if (items.length > 0) items[items.length - 1].style.marginBottom = "0";
 }
@@ -249,7 +250,6 @@ function getInitial(name) {
 }
 
 // ── 설정 변경 이벤트 ──────────────────────────────────────
-// 원래 코드로 완벽 복구
 ["bgColor", "padding", "fontSelect", "fontSize", "lineGap"].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
