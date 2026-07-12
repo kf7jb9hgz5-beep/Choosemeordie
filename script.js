@@ -71,7 +71,8 @@ document.getElementById("btnModalConfirm").addEventListener("click", () => {
     }
 });
 
-function editSpeaker(idx) {
+// HTML onclick에서 호출할 수 있도록 전역(window)에 등록
+window.editSpeaker = function(idx) {
     editingSpeakerIdx = idx;
     const s = speakers[idx];
     document.getElementById("modalTitle").textContent = "화자 수정";
@@ -83,7 +84,7 @@ function editSpeaker(idx) {
     modalOverlay.classList.add("open");
 }
 
-function deleteSpeaker(idx) {
+window.deleteSpeaker = function(idx) {
     if (!confirm(`"${speakers[idx].name}" 화자를 삭제할까요?`)) return;
     lines = lines.filter(l => l.speakerIdx !== idx);
     lines = lines.map(l => ({ ...l, speakerIdx: l.speakerIdx > idx ? l.speakerIdx - 1 : l.speakerIdx }));
@@ -134,20 +135,20 @@ document.getElementById("btnAddLine").addEventListener("click", () => {
     renderCanvas();
 });
 
-function deleteLine(idx) {
+window.deleteLine = function(idx) {
     lines.splice(idx, 1);
     renderLines();
     renderCanvas();
 }
 
-function moveLineUp(idx) {
+window.moveLineUp = function(idx) {
     if (idx === 0) return;
     [lines[idx - 1], lines[idx]] = [lines[idx], lines[idx - 1]];
     renderLines();
     renderCanvas();
 }
 
-function moveLineDown(idx) {
+window.moveLineDown = function(idx) {
     if (idx === lines.length - 1) return;
     [lines[idx + 1], lines[idx]] = [lines[idx], lines[idx + 1]];
     renderLines();
@@ -253,7 +254,7 @@ function getInitial(name) {
     }
 });
 
-function stepVal(id, step) {
+window.stepVal = function(id, step) {
     const el = document.getElementById(id);
     if (!el) return;
     el.value = (parseInt(el.value) || 0) + step;
@@ -285,7 +286,6 @@ document.getElementById("btnSave").addEventListener("click", () => {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        setTimeout(() => { window.open(dataURL, "_blank"); }, 300);
     });
 });
 
