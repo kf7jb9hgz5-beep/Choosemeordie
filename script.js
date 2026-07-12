@@ -113,6 +113,7 @@ function renderSpeakers() {
     });
 }
 
+// ── 대화 추가 ──────────────────────────────────────────
 function renderSpeakerSelect() {
     selSpeaker.innerHTML = "";
     speakers.forEach((s, i) => {
@@ -123,7 +124,6 @@ function renderSpeakerSelect() {
     });
 }
 
-// ── 대화 추가 ──────────────────────────────────────────
 document.getElementById("btnAddLine").addEventListener("click", () => {
     const text = document.getElementById("dialogueInput").value.trim();
     if (!text) { alert("대화 내용을 입력해주세요."); return; }
@@ -134,6 +134,7 @@ document.getElementById("btnAddLine").addEventListener("click", () => {
     renderCanvas();
 });
 
+// 🔥 [여기만 수정] 삭제 시 데이터 배열에서 지우고, 목록 UI(renderLines)도 즉시 다시 그립니다.
 function deleteLine(idx) {
     lines.splice(idx, 1);
     renderLines(); 
@@ -183,12 +184,11 @@ function renderCanvas() {
     const padding = parseInt(document.getElementById("padding").value) || 32;
     const bgColor = document.getElementById("bgColor").value;
     
+    // 원래 올려주신 원본 로직 그대로 복구 완료
     const fontSelectEl = document.getElementById("fontSelect");
     const fontFamily = fontSelectEl ? fontSelectEl.value : "system-ui";
     
-    // 폰트 사이즈 가져오기 (id값 검증 포함)
-    const fontSizeEl = document.getElementById("fontSize");
-    const fontSize = fontSizeEl ? parseInt(fontSizeEl.value) : 14;
+    const fontSize = parseInt(document.getElementById("fontSize")?.value) || 14;
     const lineHeight = (fontSize * 1.65).toFixed(1);
     const gap = parseInt(document.getElementById("lineGap")?.value) || 20;
 
@@ -224,13 +224,11 @@ function renderCanvas() {
         const nameEl = document.createElement("div");
         nameEl.className = "speaker-name";
         nameEl.style.color = s.nameColor;
-        // 이름 크기도 전체 폰트 크기 설정에 맞춰 실시간 연동
-        nameEl.style.fontSize = `${Math.max(12, fontSize - 2)}px`; 
+        nameEl.style.fontSize = `${Math.max(11, fontSize - 2)}px`;
         nameEl.textContent = s.name;
 
         const textEl = document.createElement("div");
         textEl.className = "dialogue-text";
-        // 대사 크기 실시간 연동 고정
         textEl.style.fontSize = `${fontSize}px`;
         textEl.style.lineHeight = `${lineHeight}px`;
         textEl.textContent = l.text;
@@ -251,6 +249,7 @@ function getInitial(name) {
 }
 
 // ── 설정 변경 이벤트 ──────────────────────────────────────
+// 원래 코드로 완벽 복구
 ["bgColor", "padding", "fontSelect", "fontSize", "lineGap"].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
