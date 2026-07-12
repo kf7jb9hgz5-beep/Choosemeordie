@@ -134,8 +134,10 @@ document.getElementById("btnAddLine").addEventListener("click", () => {
     renderCanvas();
 });
 
+// 🔥 [요구사항 반영] 삭제 시 목록(List)에서도 지워지도록 renderLines()를 다시 호출합니다.
 function deleteLine(idx) {
     lines.splice(idx, 1);
+    renderLines(); // 대화 목록 새로고침 추가
     renderCanvas();
 }
 
@@ -182,7 +184,6 @@ function renderCanvas() {
     const padding = parseInt(document.getElementById("padding").value) || 32;
     const bgColor = document.getElementById("bgColor").value;
     
-    // 🔥 [수정] HTML에서 선택된 폰트 값을 실시간으로 가져와 적용합니다.
     const fontSelectEl = document.getElementById("fontSelect");
     const fontFamily = fontSelectEl ? fontSelectEl.value : "system-ui";
     
@@ -194,7 +195,6 @@ function renderCanvas() {
     captureArea.style.padding = `${padding}px`;
 
     dialogueListEl.innerHTML = "";
-    // 🔥 [수정] 캔버스 전체 서체 스타일을 선택된 폰트로 변경합니다.
     dialogueListEl.style.fontFamily = fontFamily;
 
     lines.forEach((l) => {
@@ -239,7 +239,6 @@ function renderCanvas() {
         dialogueListEl.appendChild(item);
     });
 
-    // 마지막 아이템 마진 제거
     const items = dialogueListEl.querySelectorAll(".dialogue-item");
     if (items.length > 0) items[items.length - 1].style.marginBottom = "0";
 }
